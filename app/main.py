@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.database import Base, engine
 from app import models  # noqa: F401 - ensures all models are registered before create_all
-from app.routers import diseases, districts, alerts, publications, resources, reports, dashboards
+from app.routers import diseases, districts, alerts, publications, resources, reports, dashboards, auth, users
 
 app = FastAPI(title=settings.app_name, version="1.0.0")
 
@@ -42,3 +42,5 @@ app.include_router(publications.router, prefix=prefix)
 app.include_router(resources.router, prefix=prefix)
 app.include_router(reports.router, prefix=prefix)
 app.include_router(dashboards.router, prefix=prefix)
+app.include_router(auth.router, prefix=prefix)
+app.include_router(users.router, prefix=prefix)
